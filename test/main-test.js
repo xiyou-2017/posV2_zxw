@@ -15,7 +15,7 @@ describe('pos', () => {
       'ITEM000005',
       'ITEM000005'
     ];
-    dateDigitToString = num => num < 10 ? `0${num}` : num;
+      dateDigitToString = num => num < 10 ? `0${num}` : num;
   });
 
   it('should print correct text', () => {
@@ -43,5 +43,26 @@ describe('pos', () => {
 节省：7.50(元)
 **********************`;
     expect(console.log).toHaveBeenCalledWith(expectText);
+  });
+});
+
+describe('date',()=>{
+  it('should print correct datetime',()=>{
+      spyOn(console, 'log');
+      addDate();
+      var dateDigitToString = function (num) {
+          return num < 10 ? '0' + num : num;
+      };
+      const currentDate = new Date(),
+          year = dateDigitToString(currentDate.getFullYear()),
+          month = dateDigitToString(currentDate.getMonth() + 1),
+          date = dateDigitToString(currentDate.getDate()),
+          hour = dateDigitToString(currentDate.getHours()),
+          minute = dateDigitToString(currentDate.getMinutes()),
+          second = dateDigitToString(currentDate.getSeconds()),
+          formattedDateString = `${year}年${month}月${date}日 ${hour}:${minute}:${second}`;
+      const expectText = `打印时间：${formattedDateString}`;
+      expect(console.log).toHaveBeenCalledWith(expectText);
+
   });
 });

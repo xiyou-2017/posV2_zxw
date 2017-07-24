@@ -68,7 +68,7 @@ let buildReceipt= (itemsSubtotal)=>{
     return {itemsSubtotal,savedTotal,total};
 }
 
-let printCartItemsReceipt= (receipt)=>{
+let addDate = () =>{
     var dateDigitToString = function (num) {
         return num < 10 ? '0' + num : num;
     };
@@ -79,9 +79,14 @@ let printCartItemsReceipt= (receipt)=>{
     var hour = dateDigitToString(date.getHours());
     var minute = dateDigitToString(date.getMinutes());
     var second = dateDigitToString(date.getSeconds());
-    //打印时间：2017年07月24日 10:26:03
+    console.log("打印时间："+year+"年"+month+"月"+day+"日 "+hour+":"+minute+":"+second);
+    return ("\n打印时间："+year+"年"+month+"月"+day+"日 "+hour+":"+minute+":"+second);
+
+}
+
+let printCartItemsReceipt= (receipt)=>{
     let receiptString = "***<没钱赚商店>收据***";
-    receiptString += "\n打印时间："+year+"年"+month+"月"+day+"日 "+hour+":"+minute+":"+second;
+    receiptString += addDate();
     let itemsArray = receipt.itemsSubtotal;
     for(let itemArray of itemsArray){
          receiptString+='\n名称：'+itemArray.cartItem.item.name+'，数量：'+itemArray.cartItem.count+itemArray.cartItem.item.unit+'，单价：'+itemArray.cartItem.item.price.toFixed(2)+'(元)，小计：'+itemArray.subtotal.toFixed(2)+'(元)';
