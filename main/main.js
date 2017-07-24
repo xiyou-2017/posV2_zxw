@@ -25,6 +25,7 @@ let buildItems = (inputs)=> {
             cartItems.push({item: item, count: count});
         }
     }
+    console.log(cartItems);
     return cartItems;
 }
 
